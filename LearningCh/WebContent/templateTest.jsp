@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>한자사자</title>
+<style>
+</style>
+</head>
+<body>
+<%
+	String contentpage= request.getParameter("CONTENTPAGE");
+%>
+<!--  templateTest.jsp     URL에 표시되는 내용은 main.jsp이다 -->
+
+<table width="100%" border=0 >
+	<tr>
+		<td>
+			<jsp:include page="logo.jsp" flush="false"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<jsp:include page="top.jsp" flush="false"/>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" id="content">
+			<jsp:include page="<%=contentpage%>"></jsp:include>
+		</td>
+	</tr>
+	<tr>
+		<td id="foot">
+			<jsp:include page="bottom.jsp" flush="false"/>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
