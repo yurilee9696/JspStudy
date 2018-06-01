@@ -23,8 +23,7 @@
 </style>
 <body>
 <div id="logoDiv">
-	<img src="image/logo.gif" id="logoImg">
-	<img src="image/logo2.gif" id="logoText">
+	logo
 </div>
 </body>
 </html>
