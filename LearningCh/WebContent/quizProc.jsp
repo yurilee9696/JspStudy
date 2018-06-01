@@ -36,7 +36,7 @@
 	float:right;
 	margin-top: 1em;
 	text-align: center;
-	font-size: 50px;
+	font-size: 2.5em;
 	background-color: #FFF;
     border-radius: 15px;
     box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
@@ -47,11 +47,10 @@
 }
 #answer-box{
 	width:30em;
-	height:auto;
+	height:17em;
 	cursor: pointer;
 	font-size: 20px;
 	margin: 0 auto;
-	background-color: fuchsia;
 	text-align: center;
 }
 </style>
@@ -118,9 +117,11 @@ try{
 <script>
 var tmpArr = new Array();
 var randArr=new Array();
+var randMean=new Array();
 var afterStr;
 var a=0;
 var n=0;
+var m=0;
 <%
 for(int j=0;j<10;j++){%>
 tmpArr[<%=j%>]='<%=ch[j]%>';
@@ -154,7 +155,9 @@ function dropDiv(ev) {
 function randCh(beforeStr){
 	afterStr = beforeStr.split('/');
 	randArr[a]=afterStr[1];
+	randMean[m]=afterStr[4];
 	a++;
+	m++;
 	randArr[a]=afterStr[3];
 	a++;
 }
@@ -179,12 +182,14 @@ var wordM = document.getElementById("word-m"); //결합된 한자의 뜻
 
 //alert(randArr); //한자만 들어가 있는 배열
 randArr = shuffle(randArr);
-//alert(randArr);
+randMean = shuffle(randMean);  //뜻이 들어있는 배열을 섞음
+
+alert(randMean);
 //alert(shuffle(tmpArr));
 //var d1=document.getElementById("d1").innerHTML=shuffle(tmpArr[1]);
 
 //var div1=document.getElementById("d1");
-
+wordM.innerHTML=randMean[0];
 for(var c=0;c<20;c++){
 	var idName="d"+(c+1);
 	//alert(idName);
