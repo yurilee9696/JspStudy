@@ -18,6 +18,7 @@
   		background: -webkit-linear-gradient(#68FF7D, #88ACFF);
   		-webkit-background-clip: text;
   		-webkit-text-fill-color: transparent;
+  		width: 100%;
 	}
 </style>
 <body>

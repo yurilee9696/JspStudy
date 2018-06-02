@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.io.FileReader"%>
+<%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.BufferedWriter"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "java.text.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +28,7 @@
 #card{
 	background-color: #FFF;
     margin: auto;
-    padding: 1.5em 0px;
+    padding: 1.5em 1em;
     text-align:center;
     border-radius: 15px;
     box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
@@ -100,14 +105,92 @@
 </style>
 </head>
 <body>
+
+<%!
+BufferedReader reader=null;
+String text="";
+String k;
+%>
+
+
+
 <%
+	String path = application.getRealPath("/WEB-INF/question");
+	File f = new File( path );
+	File[] files = f.listFiles();
+	System.out.println(path);
+	// files
+	int count = 0;
+	for (int i = 0; i < files.length; i++) {
+	
+		if ( files[i].isFile() ) {
+			count++;
+		} // end of if
+	} // end of for
+	
+try{
+	 String todayPath=application.getRealPath("/WEB-INF/todayCh.txt");
+	
+	 //오늘 날짜 구하기
+	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd");
+	 Date date = new Date();
+	 String today = sdf.format(date);
+
+	
+
+	 
+	  FileReader fr = new FileReader(todayPath); //파일읽기객체생성
+       BufferedReader br = new BufferedReader(fr); //버퍼리더객체생성
+       String line = null;
+       while((line=br.readLine())!=null){ //라인단위 읽기
+    	   text=line;
+			  
+		}//while End
+       System.out.println(text);
+       int idx = text.indexOf("*"); 
+       String front = "";
+       front=text.substring(0, idx);
+       String end = text.substring(idx+1);
+       String s="";
+       
+       BufferedWriter out2 = new BufferedWriter(new FileWriter(todayPath));
+       
+       if(end.equals(today)){
+    	   System.out.println("값 못 바꿈");
+    	   s=text;
+    	   k=front;
+    	   br.close();
+    	   out2.flush();
+       }else{
+    	   System.out.println("값 바꿈");
+    	   int num=(int) Double.parseDouble(front);
+    	   if(count!=num){
+    	   		num+=1;
+    	   }
+    	   else {
+    		   num=1;
+    	   }
+    	   k = Integer.toString(num);
+		   s=k+"*"+today;
+		   br.close();
+		   out2.flush();
+       }
+       out2.write(s);
+	   out2.newLine();
+
+	   out2.close();
+	   System.out.println("k : "+k);
+     
+}catch(Exception e) { 
+	    System.out.println(e.toString()); //에러 발생시 메시지 출력
+ }
 
 	BufferedReader reader=null;
 	int i=0;
 	String[] ch=new String[10];
 	int n=0;
 try{
-	 String couponPath=application.getRealPath("/WEB-INF/question/learn.txt");
+	 String couponPath=application.getRealPath("/WEB-INF/question/learn"+k+".txt");
 	
 	  FileReader fr = new FileReader(couponPath); //파일읽기객체생성
        BufferedReader br = new BufferedReader(fr); //버퍼리더객체생성

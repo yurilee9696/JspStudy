@@ -1,8 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
- <head>
- <meta charset="UTF-8">
+<head>
+<meta charset="UTF-8">
 <title>하루한자</title>
- <style>
+<style>
 html, body{
 	width: 100%;
 	height: 100%;
@@ -16,36 +19,39 @@ body{
 }
 table {
 	margin: 0 auto;
+	width:100%;
 	height: 100%;
-	width: 100%;
 }
- </style>
- </head>
- <body>
- <!--  templateTest.jsp     URL에 표시되는 내용은 main.jsp이다 -->
- 
+</style>
+</head>
+<body>
+<%
+	String contentpage= request.getParameter("CONTENTPAGE");
+%>
+<!--  templateTest.jsp     URL에 표시되는 내용은 main.jsp이다 -->
+
 <table border=0 >
- 	<tr>
- 		<td>
- 			<jsp:include page="logo.jsp" flush="false"/>
- 		</td>
- 	</tr>
- 	<tr>
- 		<td>
- 			<jsp:include page="top.jsp" flush="false"/>
- 		</td>
- 	</tr>
- 	<tr>
- 		<td valign="top" id="content">
- 			<jsp:include page="<%=contentpage%>"></jsp:include>
- 		</td>
- 	</tr>
- 	<tr>
- 		<td id="foot">
- 			<jsp:include page="bottom.jsp" flush="false"/>
- 		</td>
- 	</tr>
- </table>
- 
- </body>
- </html>
+	<tr>
+		<td>
+			<jsp:include page="logo.jsp" flush="false"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<jsp:include page="top.jsp" flush="false"/>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" id="content">
+			<jsp:include page="<%=contentpage%>"></jsp:include>
+		</td>
+	</tr>
+	<tr>
+		<td id="foot">
+			<jsp:include page="bottom.jsp" flush="false"/>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

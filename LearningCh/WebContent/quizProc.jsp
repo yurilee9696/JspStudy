@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.io.FileReader"%>
+<%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.BufferedWriter"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "java.text.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +23,7 @@
 	}
 #quiz-box>div{
 	width: 100%;
-	max-width: 46em;
+	max-width: 48em;
 }
 #card, #answer,#drop-first, #drop-second,#message{
 	background-color: #FFF;
@@ -31,16 +35,16 @@
     text-align: center;
 }
 #card,#drop-first, #drop-second{
-	width: 10em;
-	height: 10em;
-	margin-right: 2em;
+	width: 10.5em;
+	height: 10.5em;
+	margin-right: 2.5em;
 	float: left;
 	display: inline-block;
 	
 }
 #drop-first div, #drop-second div{
 font-size: 4em;
-padding: 0.5em 0px;
+padding: 0.6em 0px;
 }
 #card{
 	margin-right: 0em;
@@ -69,7 +73,7 @@ padding: 0.5em 0px;
 	width: 95%;
 	margin: 0 auto;
 	height: auto;
-	min-height: 15em;
+	min-height: 15.7em;
 	max-height: 100%;
 }
 #message{
@@ -113,16 +117,94 @@ padding: 0.5em 0px;
 </style>
 </head>
 <body>
+<%!
+BufferedReader reader=null;
+String text="";
+String k;
+%>
+
+
+
 <%
+	String path = application.getRealPath("/WEB-INF/question");
+	File f = new File( path );
+	File[] files = f.listFiles();
+	System.out.println(path);
+	// files
+	int count = 0;
+	for (int i = 0; i < files.length; i++) {
+	
+		if ( files[i].isFile() ) {
+			count++;
+		} // end of if
+	} // end of for
+	
+try{
+	 String todayPath=application.getRealPath("/WEB-INF/todayCh.txt");
+	
+	 //오늘 날짜 구하기
+	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd");
+	 Date date = new Date();
+	 String today = sdf.format(date);
+
+	
+
+	 
+	  FileReader fr = new FileReader(todayPath); //파일읽기객체생성
+       BufferedReader br = new BufferedReader(fr); //버퍼리더객체생성
+       String line = null;
+       while((line=br.readLine())!=null){ //라인단위 읽기
+    	   text=line;
+			  
+		}//while End
+       System.out.println(text);
+       int idx = text.indexOf("*"); 
+       String front = "";
+       front=text.substring(0, idx);
+       String end = text.substring(idx+1);
+       String s="";
+       
+       BufferedWriter out2 = new BufferedWriter(new FileWriter(todayPath));
+       
+       if(end.equals(today)){
+    	   System.out.println("값 못 바꿈");
+    	   s=text;
+    	   k=front;
+    	   br.close();
+    	   out2.flush();
+       }else{
+    	   System.out.println("값 바꿈");
+    	   int num=(int) Double.parseDouble(front);
+    	   if(count!=num){
+    	   		num+=1;
+    	   }
+    	   else {
+    		   num=1;
+    	   }
+    	   k = Integer.toString(num);
+		   s=k+"*"+today;
+		   br.close();
+		   out2.flush();
+       }
+       out2.write(s);
+	   out2.newLine();
+
+	   out2.close();
+	   System.out.println("k : "+k);
+     
+}catch(Exception e) { 
+	    System.out.println(e.toString()); //에러 발생시 메시지 출력
+ }
 
 	BufferedReader reader=null;
 	int i=0;
 	String[] ch=new String[10];
 	int n=0;
 try{
-	 String couponPath=application.getRealPath("/WEB-INF/question/learn.txt");
+	 String couponPath=application.getRealPath("/WEB-INF/question/learn"+k+".txt");
 	
 	  FileReader fr = new FileReader(couponPath); //파일읽기객체생성
+ 
        BufferedReader br = new BufferedReader(fr); //버퍼리더객체생성
        String line =null;
        
@@ -173,7 +255,7 @@ try{
 		</div>
 		<div id="message" hidden="hidden">
 			<font color="#88ACFF">축하합니다!</font><br>
-			오늘의 문제를 <font color="#88ACFF">모두</font> 맞추셨습니다!
+			퀴즈를 <font color="#88ACFF">모두</font> 맞추셨습니다!
 		</div>
 		</div>
 </div>
