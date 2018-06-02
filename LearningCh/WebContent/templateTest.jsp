@@ -4,8 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>한자사자</title>
+<title>하루한자</title>
 <style>
+html, body{
+	width: 100%;
+	height: 100%;
+}
+body{
+	display: table;
+}
+#content {
+	height: 90%;
+	background-color: #EEEEEE;
+}
+table {
+	margin: 0 auto;
+	height: 100%;
+	width: 100%;
+}
 </style>
 </head>
 <body>
@@ -14,7 +30,7 @@
 %>
 <!--  templateTest.jsp     URL에 표시되는 내용은 main.jsp이다 -->
 
-<table width="100%" border=0 >
+<table border=0 >
 	<tr>
 		<td>
 			<jsp:include page="logo.jsp" flush="false"/>

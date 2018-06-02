@@ -9,16 +9,93 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+#learn-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width:100%;
+}
+#learn-box>div{
+	width: 80%;
+	max-width: 40em;
+}
 #card{
 	background-color: #FFF;
     margin: auto;
-    padding: 1.5em;
-    width: 40em;
+    padding: 1.5em 0px;
+    text-align:center;
     border-radius: 15px;
     box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
+    font-size: 1.5em;
+    
+}
+#mean{
+	font-size: 1.1em;
+	margin-top: 0.7em;
+}
+#first-ch,#second-ch,#word-ch{
+	color: #2ADE43;
+	font-size: 1.3em;
 }
 #first-m, #first-ch,#second-m,#second-ch,#word-m,#word-ch{
 	display: inline;
+}
+#learn-text{
+	background-color: #FFF;
+    margin: auto;
+    padding: 1.5em;
+    padding:3em 0;
+    text-align:center;
+    border-radius: 15px;
+    box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
+    font-size: 1.5em;
+}
+.sim-button,.next-button, .pre-button{
+	line-height: 50px;
+	text-align: center;
+	margin: auto;
+	margin-top: 2em;
+	width: 8em;
+	cursor: pointer;
+	background-color: #88ACFF;
+	box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
+	outline: none;
+}
+.button1 {
+	color: #FFF;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	position: relative;
+	border: 1px solid #88ACFF;
+	font-size: 1em;
+}
+.button1:hover {
+	background-color: #FFF;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;	
+	color: #88ACFF;
+}
+
+.next-button, .pre-button{
+	line-height: 40px;
+	text-align: center;
+	width: 4em;
+	box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
+	font-size: 0.9em;
+}
+.pre-button{
+	background-color: #FFF;
+	margin-right: 1em;
+	color: #88ACFF;
+}
+
+
+#button-box{
+	text-align: center;
 }
 </style>
 </head>
@@ -40,29 +117,31 @@ try{
     	      ch[i]=line;
     	      i++;
     	    }
-	  
-     
-     
-     
 }catch(Exception e) { 
 	    System.out.println(e.toString()); //에러 발생시 메시지 출력
  }
 %>
-<div id="card" hidden>
-	<div id="text">
-		<div id="first-m">a</div>
-		<div id="first-ch">b</div>
-		<div id="second-m">c</div>
-		<div id="second-ch">d</div>
-		<div id="word-m">e</div>
-		<div id="word-ch">f</div>
-		<div id="mean">g</div>
+<div id="learn-box">
+	<div>
+		<div id="card" hidden="didden">
+			<div id="text">
+				<div id="first-m">뜻</div>
+				<div id="first-ch">한자1</div> +
+				<div id="second-m">뜻</div>
+				<div id="second-ch">한자2</div> ->
+				<div id="word-m">회의자 뜻</div>
+				<div id="word-ch">회의자 한자</div>
+				<div id="mean">의미</div>
+			</div>
+			<input type="button" id="prev" value="prev" onclick="prev()" class="pre-button button1">
+			<input type="button" id="next" value="next" onclick="next()" class="next-button button1">
+		</div>
+		<div id="learn-text">시작하기 버튼을 눌러<br>한자 학습을 시작해볼까요?</div>
+		<div id="button-box">
+			<input type="button" id="show-card-btn" value="시작하기" onclick="showCard()" class="sim-button button1">
+		</div>
 	</div>
-	<input type="button" id="prev" value="prev" onclick="prev()">
-	<input type="button" id="next" value="next" onclick="next()">
 </div>
-<p id="learn-text">시작하기 버튼을 눌러 한자 학습을 시작해볼까요?</p><br>
-<input type="button" id="show-card-btn" value="시작하기" onclick="showCard()">
 <script>
 var tmpArr = new Array();
 

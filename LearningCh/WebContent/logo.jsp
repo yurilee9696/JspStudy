@@ -7,23 +7,23 @@
 <title>Insert title here</title>
 </head>
 <style>
+	html,body{
+		padding: 0px;
+		margin:0px;
+	}
 	#logoDiv{
-		background-color: #EBFAF6;
 		text-align: center;
-		padding: 30px;
-	}
-	#logoImg{
-		width: 120px;
-	}
-	#logoText{
-		display: block;
-		width: 100px;
-		margin: 0 auto ;
+		padding: 30px 0px;
+		font-size: 3.5em;
+  		background: -webkit-linear-gradient(#68FF7D, #88ACFF);
+  		-webkit-background-clip: text;
+  		-webkit-text-fill-color: transparent;
+  		width: 100%;
 	}
 </style>
 <body>
 <div id="logoDiv">
-	logo
+	每日漢字
 </div>
 </body>
 </html>
