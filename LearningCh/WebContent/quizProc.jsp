@@ -21,7 +21,7 @@
 	width: 100%;
 	max-width: 46em;
 }
-#card, #answer,#drop-first, #drop-second{
+#card, #answer,#drop-first, #drop-second,#message{
 	background-color: #FFF;
     margin: auto;
     width: 40em;
@@ -40,6 +40,7 @@
 }
 #drop-first div, #drop-second div{
 font-size: 4em;
+padding: 0.5em 0px;
 }
 #card{
 	margin-right: 0em;
@@ -51,6 +52,9 @@ font-size: 4em;
 #word-m{
 	text-align: center;
 	margin: 0 auto;
+}
+#text{
+	padding-top: 2.5em;
 }
 #answer{
 	width: 90%;
@@ -68,6 +72,11 @@ font-size: 4em;
 	min-height: 15em;
 	max-height: 100%;
 }
+#message{
+	font-size: 1.5em;
+	width: 90%;
+	padding: 2em 0px;
+}
 
 #button-box{
 	text-align: center;
@@ -77,7 +86,7 @@ font-size: 4em;
 	text-align: center;
 	margin: auto;
 	margin-top: 2em;
-	width: 8em;
+	width: 10em;
 	cursor: pointer;
 	background-color: #88ACFF;
 	box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
@@ -100,6 +109,7 @@ font-size: 4em;
 	border-radius: 25px;	
 	color: #88ACFF;
 }
+
 </style>
 </head>
 <body>
@@ -162,8 +172,8 @@ try{
 			<input type="button" value="정답 제출하기" onclick="answerCheck()" class="sim-button button1">
 		</div>
 		<div id="message" hidden="hidden">
-			축하합니다!<br>
-			오늘의 문제를 모두 맞추셨습니다!
+			<font color="#88ACFF">축하합니다!</font><br>
+			오늘의 문제를 <font color="#88ACFF">모두</font> 맞추셨습니다!
 		</div>
 		</div>
 </div>
@@ -182,6 +192,7 @@ var m=0;
 var ch=0;
 var num=0;
 var beforeStr;
+var ques="<br>"+"?";
 <%
 for(int j=0;j<10;j++){%>
 tmpArr[<%=j%>]='<%=ch[j]%>';
@@ -215,7 +226,7 @@ function dropDiv(ev) {
 function randCh(beforeStr){
 	afterStr = beforeStr.split('/');
 	randArr[a]=afterStr[1];
-	randMean[m]=afterStr[4]+"/"+afterStr[1]+"/"+afterStr[3];
+	randMean[m]=afterStr[4]+"/"+afterStr[1]+"/"+afterStr[3]+"/"+afterStr[5];
 	a++;
 	m++;
 	randArr[a]=afterStr[3];
@@ -248,7 +259,7 @@ randMean = shuffle(randMean);  //뜻이 들어있는 배열을 섞음
 meanArr = randMean[ch].split('/');
 //alert(meanArr);
 
-wordM.innerHTML=meanArr[0]; //문제
+wordM.innerHTML=meanArr[0]+ques; //문제
 for(var c=0;c<20;c++){
 	var idName="d"+(c+1);
 	//alert(idName);
@@ -267,13 +278,27 @@ function answerCheck(){
 		$("#drop-second").css("border","solid 1px green");
 		setTimeout( function(){
 		    $('#drop-first').css('border','none');
-		       },300);
+		       },2000);
 		setTimeout( function(){
 		    $('#drop-second').css('border','none');
-		       },300);
-		$("#drop-first").children("div").remove();
-		$("#drop-second").children("div").remove();
-		next(); //정답일 경우 다음으로 넘어감
+		       },2000);
+		
+		setTimeout( function(){
+			$("#drop-first").children("div").remove();
+		       },2000);
+		setTimeout( function(){
+			$("#drop-second").children("div").remove();
+		       },2000);
+		
+		wordM.innerHTML=meanArr[0]+"<br>"+meanArr[3];
+		
+		setTimeout( next,2000);
+		
+		
+		//$("#drop-first").children("div").remove();
+		//$("#drop-second").children("div").remove();
+		
+		//next(); //정답일 경우 다음으로 넘어감
 	}//if
 	else{//오답일 경우
 		//alert("오답입니다 정답은 : "+meanArr[1]+meanArr[2]);
@@ -288,10 +313,12 @@ function answerCheck(){
 	}
 }
 function next(){
-	if(ch==0) { //모든 문제를 맞춘 경우 //9
+	if(ch==9) { //모든 문제를 맞춘 경우 //9
 		var card = document.getElementById("card");
 		var box = document.getElementById("box");
 		var answer = document.getElementById("answer"); 
+		var buttonBox = document.getElementById("button-box");
+		buttonBox.style.display = 'none';
 		card.style.display = 'none';
 		box.style.display = 'none';
 		answer.style.display = 'none'; //문제를 푸는데 사용했던 div를 다 숨김
@@ -301,7 +328,7 @@ function next(){
 	}
 	ch++;
 	meanArr = randMean[ch].split('/');
-	wordM.innerHTML=meanArr[0];
+	wordM.innerHTML=meanArr[0]+ques;
 }
 </script>
 </body>

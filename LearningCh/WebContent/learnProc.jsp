@@ -18,7 +18,7 @@
 }
 #learn-box>div{
 	width: 80%;
-	max-width: 40em;
+	max-width: 45em;
 }
 #card{
 	background-color: #FFF;

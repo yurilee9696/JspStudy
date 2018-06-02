@@ -14,11 +14,10 @@
 	#logoDiv{
 		text-align: center;
 		padding: 30px 0px;
-		font-size: 3.5em;
+		font-size: 4em;
   		background: -webkit-linear-gradient(#68FF7D, #88ACFF);
   		-webkit-background-clip: text;
   		-webkit-text-fill-color: transparent;
-  		width: 100%;
 	}
 </style>
 <body>

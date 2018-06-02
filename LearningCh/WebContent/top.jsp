@@ -14,7 +14,6 @@
 	background-color: white;
 	text-align: center;
 	padding:0px 1em 1em 1em;
-	width:100%;
 	box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.13);
 	margin-bottom: 0.7em;
 	}
@@ -39,7 +38,7 @@
 </head>
 <body>
 <div id="menuDiv">
-	<a href="main.jsp"> 메인</a><a href="learn.jsp">학습하기</a><a href="quiz.jsp">퀴즈풀기</a>
+	<a href="main.jsp">&nbsp;&nbsp;&nbsp; 메인</a><a href="learn.jsp">학습하기</a><a href="quiz.jsp">퀴즈풀기</a>
 </div>
 </body>
 </html>
