@@ -37,7 +37,7 @@
 #card,#drop-first, #drop-second{
 	width: 10.5em;
 	height: 10.5em;
-	margin-right: 2.5em;
+	margin-right: 2.4em;
 	float: left;
 	display: inline-block;
 	
@@ -73,7 +73,7 @@ padding: 0.6em 0px;
 	width: 95%;
 	margin: 0 auto;
 	height: auto;
-	min-height: 15.7em;
+	min-height: 16em;
 	max-height: 100%;
 }
 #message{
